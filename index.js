@@ -64,11 +64,11 @@ async function run() {
 
   //add new product to the database 
 
-  // app.post('/products',async(req,res)=>{
-  //   const data =req.body;
-  //   const result = await productcollection.insertOne(data);
-  //   res.send(result)
-  // })
+  app.post('/products',async(req,res)=>{
+    const data =req.body;
+    const result = await productcollection.insertOne(data);
+    res.send(result)
+  })
 
   
 
@@ -150,6 +150,56 @@ app.delete("/imports/:id", async (req, res) => {
 
   res.send(result);
 });
+
+
+
+
+
+
+// // 1) Get all products created by a specific user
+// app.get('/products/user/:email', async (req, res) => {
+//   const { email } = req.params;
+//   try {
+//     const items = await productcollection.find({ userEmail: email }).sort({ createdAt: -1 }).toArray();
+//     res.send(items);
+//   } catch (err) {
+//     res.status(500).send({ error: err.message });
+//   }
+// });
+
+// // 2) Delete a product by id
+// app.delete('/products/:id', async (req, res) => {
+//   const { id } = req.params;
+//   try {
+//     const result = await productcollection.deleteOne({ _id: new ObjectId(id) });
+//     res.send(result);
+//   } catch (err) {
+//     res.status(500).send({ error: err.message });
+//   }
+// });
+
+// // 3) Update a product by id
+// app.put('/products/:id', async (req, res) => {
+//   const { id } = req.params;
+//   const updatedData = req.body;
+
+//   // optional: sanitize/convert numeric fields here
+//   if (updatedData.price !== undefined) updatedData.price = Number(updatedData.price);
+//   if (updatedData.rating !== undefined) updatedData.rating = Number(updatedData.rating);
+//   if (updatedData.availableQuantity !== undefined) updatedData.availableQuantity = Number(updatedData.availableQuantity);
+
+//   try {
+//     const result = await productcollection.updateOne(
+//       { _id: new ObjectId(id) },
+//       { $set: updatedData }
+//     );
+//     res.send(result);
+//   } catch (err) {
+//     res.status(500).send({ error: err.message });
+//   }
+// });
+
+
 
 
 
