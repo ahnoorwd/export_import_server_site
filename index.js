@@ -157,17 +157,17 @@ app.delete("/imports/:id", async (req, res) => {
 
 
 // // 1) Get all products created by a specific user
-// app.get('/products/user/:email', async (req, res) => {
-//   const { email } = req.params;
-//   try {
-//     const items = await productcollection.find({ userEmail: email }).sort({ createdAt: -1 }).toArray();
-//     res.send(items);
-//   } catch (err) {
-//     res.status(500).send({ error: err.message });
-//   }
-// });
+app.get('/products/user/:email', async (req, res) => {
+  const { email } = req.params;
+  try {
+    const items = await productcollection.find({ userEmail: email }).sort({ createdAt: -1 }).toArray();
+    res.send(items);
+  } catch (err) {
+    res.status(500).send({ error: err.message });
+  }
+});
 
-// // 2) Delete a product by id
+// 2) Delete a product by id
 // app.delete('/products/:id', async (req, res) => {
 //   const { id } = req.params;
 //   try {
@@ -178,7 +178,7 @@ app.delete("/imports/:id", async (req, res) => {
 //   }
 // });
 
-// // 3) Update a product by id
+// 3) Update a product by id
 // app.put('/products/:id', async (req, res) => {
 //   const { id } = req.params;
 //   const updatedData = req.body;
@@ -198,9 +198,6 @@ app.delete("/imports/:id", async (req, res) => {
 //     res.status(500).send({ error: err.message });
 //   }
 // });
-
-
-
 
 
     
