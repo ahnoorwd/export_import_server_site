@@ -168,15 +168,15 @@ app.get('/products/user/:email', async (req, res) => {
 });
 
 // 2) Delete a product by id
-// app.delete('/products/:id', async (req, res) => {
-//   const { id } = req.params;
-//   try {
-//     const result = await productcollection.deleteOne({ _id: new ObjectId(id) });
-//     res.send(result);
-//   } catch (err) {
-//     res.status(500).send({ error: err.message });
-//   }
-// });
+app.delete('/products/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+    const result = await productcollection.deleteOne({ _id: new ObjectId(id) });
+    res.send(result);
+  } catch (err) {
+    res.status(500).send({ error: err.message });
+  }
+});
 
 // 3) Update a product by id
 // app.put('/products/:id', async (req, res) => {
