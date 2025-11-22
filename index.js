@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+require("dotenv").config();
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 
 const app = express();
@@ -15,7 +16,7 @@ app.get("/", (req, res) => {
 });
 
 const uri =
-  "mongodb+srv://exportimport:tqLiDfBn3fxFhOyH@cluster0.u05ii.mongodb.net/?appName=Cluster0";
+  `mongodb+srv://${process.env.DB_UserName}:${process.env.DB_password}@cluster0.u05ii.mongodb.net/?appName=Cluster0`;
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
@@ -147,16 +148,16 @@ async function run() {
 
     // search operation is here to client side
 
-    // app.get("/search", async (req, res) => {
-    //   const search_text = req.query.search;
-    //   console.log(search_text);
-    //   const result = await productcollection
-    //     .find({
-    //       productName: { $regex: search_text, $options: "i" },
-    //     })
-    //     .toArray();
-    //   res.send(result);
-    // });
+    app.get("/search", async (req, res) => {
+      const search_text = req.query.search;
+      // console.log(search_text);
+      const result = await productcollection
+        .find({
+          productName: { $regex: search_text, $options: "i" },
+        })
+        .toArray();
+      res.send(result);
+    });
 
     // // 1) Get all products created by a specific user
     app.get("/products/user/:email", async (req, res) => {
